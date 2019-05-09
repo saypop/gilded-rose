@@ -278,7 +278,7 @@ describe GildedRose do
 
       it "lowers the SellIn value by 1" do
         @subject.update_quality()
-        expect(@items[0].sell_in).to eq -2
+        expect(@items[0].sell_in).to eq(-2)
       end
 
     end

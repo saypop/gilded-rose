@@ -18,6 +18,15 @@ class GildedRose
     item.sell_in -= 1
   end
 
+  def pass_update(item)
+    item.quality += 1
+    item.quality += 1 if item.sell_in <= 10
+    item.quality += 1 if item.sell_in <= 5
+    item.quality = 50 if item.quality > 50
+    item.quality = 0 if item.sell_in <= 0
+    item.sell_in -= 1
+  end
+
   def update_quality()
     @items.each do |item|
       if item.name == "foo"
@@ -25,6 +34,9 @@ class GildedRose
       end
       if item.name == "Aged Brie"
         return brie_update(item)
+      end
+      if item.name == "Backstage passes to a TAFKAL80ETC concert"
+        return pass_update(item)
       end
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > 0
