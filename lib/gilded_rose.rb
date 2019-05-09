@@ -4,8 +4,18 @@ class GildedRose
     @items = items
   end
 
+  def normal_update(item)
+    item.quality -= 1
+    item.quality -= 1 if item.sell_in <= 0
+    item.quality = 0 if item.quality < 0
+    item.sell_in -= 1
+  end
+
   def update_quality()
     @items.each do |item|
+      if item.name == "foo"
+        return normal_update(item)
+      end
       if item.name != "Aged Brie" and item.name != "Backstage passes to a TAFKAL80ETC concert"
         if item.quality > 0
           if item.name != "Sulfuras, Hand of Ragnaros"

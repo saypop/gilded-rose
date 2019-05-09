@@ -14,16 +14,16 @@ describe GildedRose do
       expect(@items[0].name).to eq "foo"
     end
 
-    it "lowers the SellIn value by 1" do
-      @subject.update_quality()
-      expect(@items[0].sell_in).to eq 4
-    end
-
     context "while SellIn >= 0" do
 
       it "lowers the Quality value by 1" do
         @subject.update_quality()
         expect(@items[0].quality).to eq 3
+      end
+
+      it "lowers the SellIn value by 1" do
+        @subject.update_quality()
+        expect(@items[0].sell_in).to eq 4
       end
 
       context "if the item is Aged Brie" do
@@ -38,6 +38,11 @@ describe GildedRose do
           expect(@items[0].quality).to eq 6
         end
 
+        it "lowers the SellIn value by 1" do
+          @subject.update_quality()
+          expect(@items[0].sell_in).to eq 4
+        end
+
         context "while quality is close to 50" do
 
           before :each do
@@ -48,6 +53,11 @@ describe GildedRose do
           it "doesn't raise the quality above 50" do
             @subject.update_quality()
             expect(@items[0].quality).to eq 50
+          end
+
+          it "lowers the SellIn value by 1" do
+            @subject.update_quality()
+            expect(@items[0].sell_in).to eq 4
           end
 
         end
@@ -87,6 +97,30 @@ describe GildedRose do
             expect(@items[0].quality).to eq 21
           end
 
+          it "lowers the SellIn value by 1" do
+            @subject.update_quality()
+            expect(@items[0].sell_in).to eq 19
+          end
+
+          context "while quality is close to 50" do
+
+            before :each do
+              @items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 5, 50)]
+              @subject = GildedRose.new(@items)
+            end
+
+            it "doesn't raise the quality above 50" do
+              @subject.update_quality()
+              expect(@items[0].quality).to eq 50
+            end
+
+            it "lowers the SellIn value by 1" do
+              @subject.update_quality()
+              expect(@items[0].sell_in).to eq 4
+            end
+
+          end
+
         end
 
         context "when there are less than 10 days to the concert" do
@@ -101,6 +135,11 @@ describe GildedRose do
             expect(@items[0].quality).to eq 22
           end
 
+          it "lowers the SellIn value by 1" do
+            @subject.update_quality()
+            expect(@items[0].sell_in).to eq 8
+          end
+
         end
 
         context "when there are less than 5 days to the concert" do
@@ -113,6 +152,11 @@ describe GildedRose do
           it "raises the quality by 3" do
             @subject.update_quality()
             expect(@items[0].quality).to eq 23
+          end
+
+          it "lowers the SellIn value by 1" do
+            @subject.update_quality()
+            expect(@items[0].sell_in).to eq 3
           end
 
         end
@@ -133,6 +177,11 @@ describe GildedRose do
         expect(@items[0].quality).to eq 2
       end
 
+      it "lowers the SellIn value by 1" do
+        @subject.update_quality()
+        expect(@items[0].sell_in).to eq(-2)
+      end
+
       context "if the item is Aged Brie" do
 
         before :each do
@@ -145,6 +194,11 @@ describe GildedRose do
           expect(@items[0].quality).to eq 7
         end
 
+        it "lowers the SellIn value by 1" do
+          @subject.update_quality()
+          expect(@items[0].sell_in).to eq(-2)
+        end
+
         context "while quality is close to 50" do
 
           before :each do
@@ -155,6 +209,11 @@ describe GildedRose do
           it "doesn't raise the quality above 50" do
             @subject.update_quality()
             expect(@items[0].quality).to eq 50
+          end
+
+          it "lowers the SellIn value by 1" do
+            @subject.update_quality()
+            expect(@items[0].sell_in).to eq(-6)
           end
 
         end
@@ -194,6 +253,11 @@ describe GildedRose do
             expect(@items[0].quality).to eq 0
           end
 
+          it "lowers the SellIn value by 1" do
+            @subject.update_quality()
+            expect(@items[0].sell_in).to eq(-1)
+          end
+
         end
 
       end
@@ -210,6 +274,11 @@ describe GildedRose do
       it "doesn't lower the quality below 0" do
         @subject.update_quality()
         expect(@items[0].quality).to eq 0
+      end
+
+      it "lowers the SellIn value by 1" do
+        @subject.update_quality()
+        expect(@items[0].sell_in).to eq -2
       end
 
     end
