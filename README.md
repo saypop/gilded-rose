@@ -3,6 +3,9 @@
 ### Approach
 1. Write some tests for normal items;
 2. Trap the "foo" items path in the code so that my tests fail;
+3. Extract method that passes tests;
+4. Trap the "brie" items path in the code so that my tests fail;
+5. Extract method that passes tests;
 
 This is a well known kata developed by [Terry Hughes](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/). This is commonly used as a tech test to assess a candidate's ability to read, refactor and extend legacy code.
 
