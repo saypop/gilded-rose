@@ -26,6 +26,25 @@ describe GildedRose do
         expect(@items[0].sell_in).to eq 4
       end
 
+      context "if the item is Conjured Mana Cake" do
+
+        before :each do
+          @items = [Item.new("Conjured Mana Cake", 5, 4)]
+          @subject = GildedRose.new(@items)
+        end
+
+        it "lowers the Quality value by 2" do
+          @subject.update_quality()
+          expect(@items[0].quality).to eq 2
+        end
+
+        it "lowers the SellIn value by 1" do
+          @subject.update_quality()
+          expect(@items[0].sell_in).to eq 4
+        end
+
+      end
+
       context "if the item is Aged Brie" do
 
         before :each do
@@ -180,6 +199,25 @@ describe GildedRose do
       it "lowers the SellIn value by 1" do
         @subject.update_quality()
         expect(@items[0].sell_in).to eq(-2)
+      end
+
+      context "if the item is Conjured Mana Cake" do
+
+        before :each do
+          @items = [Item.new("Conjured Mana Cake", -1, 4)]
+          @subject = GildedRose.new(@items)
+        end
+
+        it "lowers the Quality value by 4" do
+          @subject.update_quality()
+          expect(@items[0].quality).to eq 0
+        end
+
+        it "lowers the SellIn value by 1" do
+          @subject.update_quality()
+          expect(@items[0].sell_in).to eq -2
+        end
+
       end
 
       context "if the item is Aged Brie" do
