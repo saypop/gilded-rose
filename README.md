@@ -1,14 +1,11 @@
 # Gilded rose tech test
 
-### Approach
-1. Write some tests for normal items;
-2. Trap the "foo" items path in the code so that my tests fail;
-3. Extract method that passes tests;
-4. Trap the "brie" items path in the code so that my tests fail;
-5. Extract method that passes tests;
-6. Trap the "backstage pass" items path in the code so that my tests fail;
-7. Extract method that passes tests;
+### My Approach
+1. Write all tests for expected behaviour;
+2. Pass each test individually by trapping the object being tested;
+3. Refactor after each step by extracting trapped fucntionality into classes.
 
+### Description
 This is a well known kata developed by [Terry Hughes](http://iamnotmyself.com/2011/02/13/refactor-this-the-gilded-rose-kata/). This is commonly used as a tech test to assess a candidate's ability to read, refactor and extend legacy code.
 
 Here is the text of the kata:
